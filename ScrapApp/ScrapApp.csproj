@@ -64,6 +64,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requerimientos.cs" />
     <Compile Include="ETL.cs" />
+    <Compile Include="Solicitante.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

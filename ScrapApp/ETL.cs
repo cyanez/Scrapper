@@ -19,7 +19,7 @@ namespace ScrapApp
       
       GetGeneralInfo(conamer);
       GetFundamentoJuridicoOrigenTramite(conamer);
-
+      
       List<Requerimientos> requerimientosList = GetRequisitosList(conamer);
 
       output.Requerimientos = requerimientosList;
@@ -30,17 +30,17 @@ namespace ScrapApp
       return JsonConvert.DeserializeObject(outputJson);
       
     }
-    private static void GetGeneralInfo(dynamic conamer) {
-    
+    private static void GetGeneralInfo(dynamic conamer) {    
 
       output.Dependencia = conamer.Dependencia;
       output.Unidad_Administrativa = conamer.UnidadAdministrativa;
       output.Homoclave = conamer.Homoclave;
       output.Nombre = conamer.Nombre;
-      output.Nombre_Modalidad = conamer.NombreDeModalidad;      
+      output.Nombre_Modalidad = conamer.NombreDeModalidad;
+      output.CuandoRealizarTramite = conamer.CuandoRealizarTramite;
+      output.Solicitantes = Solicitante.GetSolicitantes(conamer);
     }
-
-
+    
     private static List<Requerimientos> GetRequisitosList(dynamic JSONProcedure) {
       dynamic requisitos = JSONProcedure["Requisitos"];
 
