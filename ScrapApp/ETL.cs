@@ -18,10 +18,14 @@ namespace ScrapApp
       dynamic conamer = JsonConvert.DeserializeObject(conamerRawJson);
       
       GetGeneralInfo(conamer);
+      GetFundamentoJuridicoOrigenTramite(conamer);
+
       List<Requerimientos> requerimientosList = GetRequisitosList(conamer);
 
       output.Requerimientos = requerimientosList;
 
+      output.FundamentosJuridicosOrigen = GetFundamentoJuridicoOrigenTramite(conamer);
+            
       string outputJson = JsonConvert.SerializeObject(output, Formatting.Indented);
       return JsonConvert.DeserializeObject(outputJson);
       
@@ -72,6 +76,24 @@ namespace ScrapApp
       }
       return requerimientosList;
 
+    }
+
+    private static List<FundamentoJuridico> GetFundamentoJuridicoOrigenTramite(dynamic conamer) {
+      
+      var JsonFundamentos = conamer["Fundamentos"].Children();     
+      List<FundamentoJuridico> fundamentos = new List<FundamentoJuridico>();
+            
+      foreach (var item in JsonFundamentos) {
+        FundamentoJuridico fundamento = new FundamentoJuridico();
+
+        fundamento.Fundamento = item.GetValue("Fundamento").ToString();
+        fundamento.FechaPublicacion = item.GetValue("Publicacion").ToString();
+
+        fundamentos.Add(fundamento);              
+
+      }
+
+      return fundamentos;
     }
 
 

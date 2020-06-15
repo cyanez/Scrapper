@@ -37,6 +37,7 @@ namespace ScrapApp
 
      var x = ETL.Transform("https://conamer.gob.mx/tramites/FichaPublicaV2/Index/?consulId=8847&Modalidad=&Copia=");
       Console.WriteLine(x);
+      Console.ReadLine();
     }
 
        
